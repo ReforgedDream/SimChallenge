@@ -105,7 +105,9 @@ public class Track {
         System.out.println(String.format(StringConst.ELAPSED_TIME, globalTime / 3600, ((globalTime % 3600) / 60), (((globalTime % 3600) % 60))));
 
         for (Vehicle unit : units) {
-            System.out.println(String.format(StringConst.HAS_TRAVELED, unit.getName(), unit.getDistancePassed() / 1000.0));
+            if (unit.getDistancePassed() <= distance) {
+                System.out.println(String.format(StringConst.HAS_TRAVELED, unit.getName(), unit.getDistancePassed() / 1000.0));
+            }
         }
     }
 }
