@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<config>
+    <track distance="30000"/>
+    <vehicles>
+        <vehicle
+                type="bike"
+                name="Fast and unreliable Vasya"
+                speed="200"
+                punctureRate="0.0001"
+                hasSidecar="false"/>
+
+        <vehicle
+                type="truck"
+                name="Slow but reliable Petya"
+                speed="50"
+                punctureRate="0.000025"
+                load="5"/>
+
+        <vehicle
+                type="car"
+                name="Ordinary Kolya"
+                speed="100"
+                punctureRate="0.00005"
+                passengers="2"/>
+    </vehicles>
+</config>
