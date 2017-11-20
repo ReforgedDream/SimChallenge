@@ -2,7 +2,7 @@ package main.java.resources;
 
 public class StringConst {
 
-    public static final String INFO_VEHICLE = "%s, speed: %4.0f kmph, puncture rate: %1.6f";
+    public static final String INFO_VEHICLE = "%s, type: %s, speed: %4.0f kmph, puncture rate: %1.6f";
     public static final String VEHICLE_TO_STRING = "%s, lap time: %02d hours, %02d minutes, %02d seconds";
     public static final String BREAK_THE_TIRE = "%s has a tire broken!";
     public static final String START_PLUS_DISTANCE = "New race. Distance: %s kilometers";

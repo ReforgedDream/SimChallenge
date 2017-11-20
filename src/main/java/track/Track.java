@@ -49,7 +49,10 @@ public class Track {
 
         if (!units.isEmpty()) {
 
+            //перед стартом вывести информацию об участниках
             printInfo();
+
+            System.out.println(StringConst.RACE_BEGINS);
 
             while (!Objects.equals(units.size(), leaders.size())) {
 
@@ -98,7 +101,6 @@ public class Track {
         for (Vehicle unit : units) {
             ((VehicleInfo) unit).printInfo();
         }
-        System.out.println(StringConst.RACE_BEGINS);
     }
 
     private void printSubtotal() {

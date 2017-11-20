@@ -92,7 +92,7 @@ public abstract class Vehicle {
     }
 
     public String getInfo() {
-        return String.format(StringConst.INFO_VEHICLE, name, speed * 3.6, punctureRate);
+        return String.format(StringConst.INFO_VEHICLE, name, this.getClass().getSimpleName().toLowerCase(), speed * 3.6, punctureRate);
     }
 }
 
