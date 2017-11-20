@@ -1,6 +1,7 @@
 package main.java.vehicles;
 
 import main.java.resources.GlobalConst;
+import main.java.resources.StringConst;
 
 public class Bike extends Vehicle implements VehicleInfo {
 
@@ -13,6 +14,6 @@ public class Bike extends Vehicle implements VehicleInfo {
     }
 
     public void printInfo() {
-        System.out.println(super.getInfo() + ", has a sidecar: " + hasSidecar);
+        System.out.println(super.getInfo() + String.format(StringConst.HAS_SIDECAR, hasSidecar));
     }
 }

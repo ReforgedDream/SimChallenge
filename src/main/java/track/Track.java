@@ -7,6 +7,7 @@ import main.java.vehicles.VehicleInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.Objects;
 
 public class Track {
@@ -26,6 +27,10 @@ public class Track {
      * @param distance
      */
     public Track(double distance) {
+        if (distance <= 0) {
+            System.out.println(StringConst.DISTANCE_MISMATCH);
+            throw new InputMismatchException();
+        }
         this.distance = distance;
     }
 
@@ -69,7 +74,7 @@ public class Track {
                         //если на ремонт не надо времени...
                         if (unit.getTimeToFinishRepair() <= 0) {
 
-                            if (Math.random() <= unit.getPunctureRate()) {
+                            if (Math.random() < unit.getPunctureRate()) {
                                 unit.brokeTheTire();
                             }
 

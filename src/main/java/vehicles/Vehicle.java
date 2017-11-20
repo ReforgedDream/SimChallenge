@@ -3,6 +3,8 @@ package main.java.vehicles;
 import main.java.resources.GlobalConst;
 import main.java.resources.StringConst;
 
+import java.util.InputMismatchException;
+
 public abstract class Vehicle implements Comparable {
 
     //скорость транспортного средства
@@ -43,6 +45,16 @@ public abstract class Vehicle implements Comparable {
      * @param timeToRepair
      */
     public Vehicle(String name, double speed, double punctureRate, int timeToRepair){
+
+        if (speed <= 0) {
+            System.out.println(StringConst.SPEED_MISMATCH);
+            throw new InputMismatchException();
+        }
+        if (punctureRate < 0 || punctureRate > 1) {
+            System.out.println(StringConst.PROBABILITY_MISMATCH);
+            throw new InputMismatchException();
+        }
+
         this.name = name;
         this.speed = speed / GlobalConst.MS_TO_KMPH;
         this.punctureRate = punctureRate;

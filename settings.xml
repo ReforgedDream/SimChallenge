@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <config>
-    <track distance="300000"/>
+    <track distance="30000"/>
     <vehicles>
         <vehicle
                 type="bike"
@@ -13,7 +13,7 @@
                 name="Slow but reliable Petya"
                 speed="50"
                 punctureRate="0.000025"
-                load="5"/>
+                load="3"/>
         <vehicle
                 type="car"
                 name="Ordinary Kolya 1"
