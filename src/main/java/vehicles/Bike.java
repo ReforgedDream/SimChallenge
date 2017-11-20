@@ -1,14 +1,14 @@
 package main.java.vehicles;
 
-public class Bike extends Vehicle implements VehicleInfo {
+import main.java.resources.GlobalConst;
 
-    private static final int BIKE_TIME = 300;
+public class Bike extends Vehicle implements VehicleInfo {
 
     //есть ли люлька
     private boolean hasSidecar;
 
     public Bike(String name, double speed, double punctureRate, boolean hasSidecar) {
-        super(name, speed, punctureRate, BIKE_TIME);
+        super(name, speed, punctureRate, GlobalConst.BIKE_TIME);
         this.hasSidecar = hasSidecar;
     }
 

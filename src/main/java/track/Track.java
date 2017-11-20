@@ -1,5 +1,6 @@
 package main.java.track;
 
+import main.java.resources.GlobalConst;
 import main.java.resources.StringConst;
 import main.java.vehicles.Vehicle;
 import main.java.vehicles.VehicleInfo;
@@ -9,7 +10,6 @@ import java.util.Objects;
 
 public class Track {
 
-    private final int SECONDS_IN_TEN_MINUTES = 600;
     private final int TIME_STEP = 1;
     private double distance;
     //время в секундах
@@ -45,7 +45,7 @@ public class Track {
 
     public void startRace() {
 
-        System.out.println(String.format(StringConst.START_PLUS_DISTANCE, distance / 1000.0));
+        System.out.println(String.format(StringConst.START_PLUS_DISTANCE, distance / GlobalConst.METERS_IN_KILOMETER));
 
         if (!units.isEmpty()) {
 
@@ -82,7 +82,7 @@ public class Track {
                     }
                 }
 
-                if ((globalTime % SECONDS_IN_TEN_MINUTES) == 0) {
+                if ((globalTime % GlobalConst.SECONDS_IN_TEN_MINUTES) == 0) {
                     printSubtotal();
                 }
             }
@@ -104,11 +104,16 @@ public class Track {
     }
 
     private void printSubtotal() {
-        System.out.println(String.format(StringConst.ELAPSED_TIME, globalTime / 3600, ((globalTime % 3600) / 60), (((globalTime % 3600) % 60))));
+        System.out.println(String.format(StringConst.ELAPSED_TIME,
+                globalTime / GlobalConst.SECONDS_IN_HOUR,
+                ((globalTime % GlobalConst.SECONDS_IN_HOUR) / GlobalConst.SECONDS_IN_MINUTE),
+                (((globalTime % GlobalConst.SECONDS_IN_HOUR) % GlobalConst.SECONDS_IN_MINUTE))));
 
         for (Vehicle unit : units) {
             if (unit.getDistancePassed() <= distance) {
-                System.out.println(String.format(StringConst.HAS_TRAVELED, unit.getName(), unit.getDistancePassed() / 1000.0));
+                System.out.println(String.format(StringConst.HAS_TRAVELED,
+                        unit.getName(),
+                        unit.getDistancePassed() / GlobalConst.METERS_IN_KILOMETER));
             }
         }
     }

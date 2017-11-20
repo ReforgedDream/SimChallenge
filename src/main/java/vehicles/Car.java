@@ -1,14 +1,14 @@
 package main.java.vehicles;
 
-public class Car extends Vehicle implements VehicleInfo {
+import main.java.resources.GlobalConst;
 
-    private static final int CAR_TIME = 600;
+public class Car extends Vehicle implements VehicleInfo {
 
     //количество пассажиров
     private short passengers;
 
     public Car(String name, double speed, double punctureRate, short passengers) {
-        super(name, speed, punctureRate, CAR_TIME);
+        super(name, speed, punctureRate, GlobalConst.CAR_TIME);
         this.passengers = passengers;
     }
 
