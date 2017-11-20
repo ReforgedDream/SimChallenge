@@ -7,6 +7,9 @@ public class GlobalConst {
     public static final int CAR_TIME = 600;
     public static final int TRUCK_TIME = 1800;
 
+    //Сколько секунд проходит за один квант симуляционного времени
+    public static final int TIME_STEP = 1;
+
     public static final double MS_TO_KMPH = 3.6;
     public static final int SECONDS_IN_HOUR = 3600;
     public static final int SECONDS_IN_MINUTE = 60;

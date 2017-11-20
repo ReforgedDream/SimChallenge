@@ -6,16 +6,18 @@ import main.java.vehicles.Vehicle;
 import main.java.vehicles.VehicleInfo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 public class Track {
 
-    private final int TIME_STEP = 1;
+    //длина трека в метрах
     private double distance;
     //время в секундах
     private int globalTime = 0;
+    //Окончившие заезд участники в порядке прибытия к финишу
     private ArrayList<Vehicle> leaders = new ArrayList<>();
-
+    //Участники гонки
     private ArrayList<Vehicle> units = new ArrayList<>();
 
     /**
@@ -56,7 +58,8 @@ public class Track {
 
             while (!Objects.equals(units.size(), leaders.size())) {
 
-                globalTime += TIME_STEP;
+                //Инкремент симуляционного времени
+                globalTime += GlobalConst.TIME_STEP;
 
                 for (Vehicle unit : units) {
 
@@ -64,20 +67,22 @@ public class Track {
                     if (unit.getLapTime() == 0) {
 
                         //если на ремонт не надо времени...
-                        if (unit.getTimeToFinishRepair() == 0) {
+                        if (unit.getTimeToFinishRepair() <= 0) {
 
                             if (Math.random() <= unit.getPunctureRate()) {
                                 unit.brokeTheTire();
                             }
 
                             //если дистанция пройдена...
-                            if (unit.calculateDistance(TIME_STEP) >= distance) {
+                            if (unit.calculateDistance(GlobalConst.TIME_STEP) >= distance) {
                                 leaders.add(unit);
                                 unit.setLapTime(globalTime);
                             }
 
                         } else {
-                            unit.decrementTimeToFinishRepair(TIME_STEP);
+                            //Если время на ремонт больше нуля, то уменьшить его
+                            //на количество прошедшего симуляционного времени
+                            unit.decrementTimeToFinishRepair(GlobalConst.TIME_STEP);
                         }
                     }
                 }
@@ -97,18 +102,28 @@ public class Track {
         }
     }
 
+    /**
+     * Вывод подробной информации об участниках перед стартом
+     */
     private void printInfo() {
         for (Vehicle unit : units) {
             ((VehicleInfo) unit).printInfo();
         }
     }
 
+    /**
+     * Вывод промежуточного состояния участников
+     * через равные интервалы симуляционного времени
+     */
     private void printSubtotal() {
         System.out.println(String.format(StringConst.ELAPSED_TIME,
                 globalTime / GlobalConst.SECONDS_IN_HOUR,
                 ((globalTime % GlobalConst.SECONDS_IN_HOUR) / GlobalConst.SECONDS_IN_MINUTE),
                 (((globalTime % GlobalConst.SECONDS_IN_HOUR) % GlobalConst.SECONDS_IN_MINUTE))));
 
+        //Сортировка участников в порядке убывания пройденного пути
+        Collections.sort(units);
+        //вывод информации о тех участниках, кто еще в пути
         for (Vehicle unit : units) {
             if (unit.getDistancePassed() <= distance) {
                 System.out.println(String.format(StringConst.HAS_TRAVELED,

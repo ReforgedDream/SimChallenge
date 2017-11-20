@@ -18,8 +18,9 @@ import java.io.IOException;
 public class XmlReader {
 
     public Track readXml(String configFileName) {
-        String filePath = new File("").getAbsolutePath();
 
+        String filePath = new File("").getAbsolutePath();
+        //файл настроек должен храниться в директории проекта (исполняемого файла)
         File xmlFile = new File(filePath.concat("\\" + configFileName));
 
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -40,13 +41,16 @@ public class XmlReader {
             e.printStackTrace();
         }
 
+        //Выбрать из файла первый элемент с тэгом "track"
         Element dist = (Element) doc.getElementsByTagName("track").item(0);
-
+        //Создать трек с длиной, равной атрибуту "distance" этого элемента
         Track track1 = new Track(Double.parseDouble(dist.getAttribute("distance")));
-
+        //Выбрать все элементы с тэгом "vehicle"
         NodeList vehiclesList = doc.getElementsByTagName("vehicle");
 
-        for (int i = 0; i < vehiclesList.getLength(); i++) { //Чтение и запись данных по проектам
+        //последовательно обойти все элементы "vehicle"
+        //и создать на треке транспортные средства в соотв. с атрибутами этих элементов
+        for (int i = 0; i < vehiclesList.getLength(); i++) {
 
             Element element = (Element) vehiclesList.item(i);
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <config>
-    <track distance="30000"/>
+    <track distance="300000"/>
     <vehicles>
         <vehicle
                 type="bike"

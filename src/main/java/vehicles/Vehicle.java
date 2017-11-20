@@ -3,7 +3,7 @@ package main.java.vehicles;
 import main.java.resources.GlobalConst;
 import main.java.resources.StringConst;
 
-public abstract class Vehicle {
+public abstract class Vehicle implements Comparable {
 
     //скорость транспортного средства
     private double speed;
@@ -122,5 +122,17 @@ public abstract class Vehicle {
                 this.getClass().getSimpleName().toLowerCase(),
                 speed * GlobalConst.MS_TO_KMPH,
                 punctureRate);
+    }
+
+    /**
+     * Сравнение транспортных средств по пройденному ими расстоянию
+     *
+     * @param compareVehicle
+     * @return
+     */
+    @Override
+    public int compareTo(Object compareVehicle) {
+        double compareDistance = ((Vehicle) compareVehicle).getDistancePassed();
+        return (int) (compareDistance - this.distancePassed);
     }
 }
